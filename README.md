@@ -13,4 +13,4 @@ Para rodar  o projeto siga os seguintes passos :
 
 2 ) Certifique-se que sua instância de servidor backend e api está ativa, acessando no navegador o seguinte link :  **http://127.0.0.1:5000/swagger/**
 
-3 )Baixe o projeto deste diretório . Para executar, clique para abrir o arquivo **index.html** em seu navegador WEB.  
+3 )Baixe o projeto deste diretório  e  abra  o arquivo **index.html** para executar o projeto em seu navegador WEB.  
