@@ -1,0 +1,204 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+}
+
+button {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background-color: #f9f9f9;
+    margin-bottom: 10px;
+    padding: 10px;
+    position: relative;
+    border-left: 5px solid #007bff;  
+}
+
+li:hover {
+    background-color: #e9ecef;
+}
+
+.btn-container {
+    position: absolute;
+    top: 50%;
+    right: 10px;  
+    transform: translateY(-50%);
+    display: flex; 
+}
+
+.btn-container button {
+    margin-left: 10px;  
+    border: none;
+    cursor: pointer;
+    outline: none;
+    border-radius: 3px;
+    padding: 5px 10px; 
+}
+
+.btn-container button.edit-btn {
+    background-color: #007bff;  
+}
+
+.btn-container button.delete-btn {
+    background-color: #dc3545;  
+}
+
+.btn-container button.timer-btn {
+    background-color: #28a745;  
+}
+
+
+
+/* Estilo para o modal */
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    border-radius: 5px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.timer {
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 16px;
+    color: #555;
+}
+
+
+
+/* Adicione isso ao seu arquivo CSS */
+.prioridade-alta {
+    border-left: 5px solid red;
+}
+
+.prioridade-media {
+    border-left: 5px solid #ffcc00;
+}
+
+.prioridade-baixa {
+    border-left: 5px solid #007bff;
+}
+
+
+
+.filter-container { float:right; clear:both; }
+
+
+
+
+/* Estilos para telas menores, como dispositivos móveis */
+@media screen and (max-width: 600px) {
+    .container {
+        padding: 10px; 
+        margin: 10px; 
+    }
+
+    /* Estilos para os formulários */
+    form {
+        margin-bottom: 15px;  
+    }
+
+    input[type="text"],
+    select {
+        width: calc(100% - 20px); 
+        padding: 8px;  
+        margin-bottom: 10px;  
+    }
+
+    button[type="submit"],
+    button[type="button"] {
+        width: 100%; 
+        margin-top: 10px;  
+    }
+
+    .modal-content {
+        width: 90%;  
+    }
+
+    .modal-content h2 {
+        font-size: 1.2rem;  
+    }
+
+
+    /* Ajustes gerais para a lista de itens */
+
+    ul { margin-top:20px ; clear:both;}
+    li {
+        padding: 10px;  
+        margin-bottom: 10px;  
+        border-left-width: 3px;  
+    }
+
+    .btn-container {
+        position: static;  
+        display: block; 
+        text-align: right;  
+        margin-top: 20px; 
+    }
+
+    .btn-container button {
+        margin: 5px;  
+    }
+
+    .timer {
+        margin-top: 10px;  
+    }
+
+}

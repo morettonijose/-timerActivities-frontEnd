@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Atividades</title>
+    <link rel="stylesheet" href="statics/styles.css">
+</head>
+<body>
+
+
+        <div class="container">
+            <h1>Lista de Atividades</h1>
+
+            <div class="filter-container">
+                <label for="category-filter">Filtrar por Categoria:</label>
+                <select id="category-filter">
+                    <option value="Todos">Todos</option>
+                    <option value="Prioridade Alta">Prioridade Alta</option>
+                    <option value="Prioridade Media">Prioridade Média</option>
+                    <option value="Prioridade Baixa">Prioridade Baixa</option>
+                </select>
+            </div>
+
+            <button id="create-button">Adicionar</button>
+            <ul id="item-list">
+                <!-- Itens serão adicionados dinamicamente pelo JavaScript -->
+            </ul>
+        </div>
+
+
+
+       <!-- Modal de Edição -->
+        <div id="edit-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Editar Atividade</h2>
+                <form id="edit-item-form">
+                    <input type="hidden" id="edit-id">
+                    <label for="edit-name">Nome:</label>
+                    <input type="text" id="edit-name" name="edit-name" required>
+                    <label for="edit-description">Descrição:</label>
+                    <input type="text" id="edit-description" name="edit-description" required>
+                    <label for="edit-category">Categoria:</label>
+                    <select id="edit-category" name="edit-category" required>
+                        <option value="Prioridade Alta" >Prioridade Alta</option>
+                        <option value="Prioridade Media">Prioridade Media</option>
+                        <option value="Prioridade Baixa">Prioridade Baixa</option>
+                    </select>
+                    <button type="button" id="save-edit">Salvar</button>
+                    <button type="button" id="cancel-edit">Cancelar</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Modal de Adição -->
+        <div id="create-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Criar Nova Atividade</h2>
+                <form id="add-item-form">
+                    <label for="name">Nome:</label>
+                    <input type="text" id="name" name="name" required>
+                    <label for="description">Descrição:</label>
+                    <input type="text" id="description" name="description" required>
+                    <label for="category">Categoria:</label>
+                    <select id="category" name="category" required>
+                        <option value="Prioridade Alta">Prioridade Alta</option>
+                        <option value="Prioridade Media">Prioridade Media</option>
+                        <option value="Prioridade Baixa">Prioridade Baixa</option>
+                    </select>
+                    <button type="submit" id="save-create">Salvar</button>
+                    <button type="button" id="cancel-create">Cancelar</button>
+                </form>
+            </div>
+        </div>
+
+    <script src="statics/scripts.js"></script>
+   <!-- <script src="statics/timer.js"></script> --> <!--Iniciando a separação do timer em códio a parte -->
+   <!-- <script src="statics/api.js"></script> --> <!--Iniciando a separação das chamadas de api  em códio a parte -->
+</body>
+</html>
