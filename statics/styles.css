@@ -33,6 +33,7 @@ button:hover {
 ul {
     list-style-type: none;
     padding: 0;
+    clear:both
 }
 
 li {
@@ -139,6 +140,34 @@ li:hover {
 
 
 .filter-container { float:right; clear:both; }
+
+
+
+
+
+
+/* Estilos para campos de entrada de texto */
+input[type="text"],
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    transition: all 0.3s ease-in-out;
+}
+
+input[type="text"]:focus,
+textarea:focus,
+select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    outline: none;
+}
+
+
 
 
 
