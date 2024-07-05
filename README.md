@@ -1,5 +1,10 @@
 # -timerActivities-frontEnd
 
+FRONT-END  para gerenciar e cronometrar tarefas acessando API PYTHON, FLASK , SQLITE e SWAGGER .
+
+Acesse aqui o github com a API e backend da aplicação :[ https://github.com/morettonijose/timerActivities-frontEnd](https://github.com/morettonijose/timerActivities-API/)
+
+
 Para rodar  o projeto siga os seguintes passos : 
 
 1 ) Instale e inicie a instância da api e  backend seguindo os passos do repositório a seguir : **https://github.com/morettonijose/timerActivities-API/**
