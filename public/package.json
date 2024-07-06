@@ -1,0 +1,20 @@
+{
+  "name": "timeractivities-frontend",
+  "version": "1.0.0",
+  "description": "FRONT-END  para gerenciar e cronometrar tarefas acessando API PYTHON, FLASK , SQLITE e SWAGGER .",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/morettonijose/timerActivities-frontEnd.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/morettonijose/timerActivities-frontEnd/issues"
+  },
+  "homepage": "https://github.com/morettonijose/timerActivities-frontEnd#readme"
+}

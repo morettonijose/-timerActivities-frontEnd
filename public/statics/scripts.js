@@ -1,3 +1,11 @@
+import {
+    addItemToDatabase,
+    updateItemInDatabase,
+    fetchItemsFromDatabase,
+    deleteItem,
+    updateTotalStart,
+    updateTotalTime
+} from './dbFunctions.js';
 
 document.addEventListener('DOMContentLoaded', function() {
 
@@ -339,6 +347,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
   //////////////FUNCOES DE CONEXAO COM O BANCO DE DADOS //////////////////////////// 
 
+  /*
+
     async function addItemToDatabase(name, description, category) {
         const response = await fetch('http://127.0.0.1:5000/activity/new', {
             method: 'POST',
@@ -438,7 +448,7 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Erro:', error);
         }
     }
-    
+
 
 
     // Função para atualizar o totalTime no servidor
@@ -463,6 +473,7 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Erro:', error);
         }
     }
+    */
  
 
 });
