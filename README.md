@@ -44,7 +44,6 @@ Uma vez que o python está instalado, adicione a biblioteca Flask para criar rap
 pip install Flask
 ```
 #### MACOS
-Na sequência, instale o framework Flask para criar rapidamente um servidor web. 
 ```bash
 pip3 install Flask
 ```
