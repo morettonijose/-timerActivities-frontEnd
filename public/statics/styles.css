@@ -51,7 +51,8 @@ li:hover {
 
 
 
-.containterIntro p{ text-align:center; margin-bottom:50px  }
+.containterIntro p{ text-align:center; margin-bottom:10px  }
+.container-create-button {text-align:center;width:100%;margin:20px}
 
 
 
@@ -148,7 +149,7 @@ li:hover {
 
 
 
-.filter-container { float:right; clear:both; }
+.filter-container { float:left; clear:both; }
 
 
 
@@ -231,9 +232,7 @@ select:focus {
         margin-top: 20px; 
     }
 
-    .btn-container button {
-        margin: 5px;  
-    }
+ 
 
     .timer {
         margin-top: 10px;  
