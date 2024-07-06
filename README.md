@@ -20,7 +20,13 @@ git clone https://github.com/morettonijose/timerActivities-frontEnd.git seu-repo
 cd seu-repositorio-front
 ```
 
+Agora basta escolher a stack para rodar seu servidor WEB de front-end. 
 
+Disponibilizei 2 opções pre-configuradas que você pode usar facilmente.
+
+Você pode escolher entre **PYTHON + Flask** ou  **NODE.JS + Express.js**.
+
+Escolha de acordo com sua preferência e siga o **passo 2 ** da stack escolhida   : 
 
 ## 2. Instalação servidor web em Python + FLASK
 
