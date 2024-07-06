@@ -72,8 +72,9 @@ python3 --version
 
 
 
-### 2. Instalação servidor web em node.js
-Se preferir, alternativamente ao servidor python cuja instalação foi descrita acima, você também pode configurar o servidor web em node para seu projeto front-end . 
+### 2. Instalação servidor web em node.js + Express.js
+
+Se preferir a alternativa de configurar seu front-end em node.js siga os procedimentos abaixo  : 
 
 Primeiro, certifique-se de ter o Node.js instalado. Você pode baixá-lo e instalá-lo a partir do site oficial do Node.js no link a seguir :
 
