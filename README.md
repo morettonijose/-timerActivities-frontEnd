@@ -51,7 +51,7 @@ pip3 install Flask
 
 ### 4. Iniciar a instância do servidor web para acessar seu front end
 
-#### Windows/linuz
+#### WINDOWS / LINUX
 ```bash
 python server.py
 ```
