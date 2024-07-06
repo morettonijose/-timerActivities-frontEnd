@@ -61,14 +61,11 @@ python server.py
 python3 --version
 ``` 
  
-## 3. Pronto! Você já pode acessar o front-end no navegador web. Acesse o link a seguir : 
+## 3. Pronto! 
+Você já pode acessar o front-end no navegador web. Acesse o link a seguir : 
 
 **http://127.0.0.1:8100/**
 
-
-==========================================================================================
-==========================================================================================
-==========================================================================================
 
 
 
@@ -98,7 +95,8 @@ node server.js
 ```
 
 
-## 3. Pronto! Você já pode acessar o front-end no navegador web. Acesse o link a seguir : 
+## 3. Pronto! 
+Você já pode acessar o front-end no navegador web. Acesse o link a seguir : 
 
 **http://localhost:8100**
 
