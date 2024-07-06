@@ -15,4 +15,4 @@ app.get('/api/test', (req, res) => {
 // Iniciar o servidor
 app.listen(PORT, () => {
     console.log(`Servidor Node.js iniciado na porta ${PORT}`);
-});
+});  
