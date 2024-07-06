@@ -1,4 +1,4 @@
-# timerActivities-frontEnd
+1# timerActivities-frontEnd
 
 FRONT-END  para gerenciar e cronometrar tarefas acessando API PYTHON, FLASK , SQLITE e SWAGGER .
 
@@ -20,7 +20,55 @@ git clone https://github.com/morettonijose/timerActivities-frontEnd.git seu-repo
 cd seu-repositorio-front
 ```
 
-### 2. Instalação do node 
+
+
+### 2. Instalação servidor web em python
+Primeiro, certifique-se de ter  python instalado. 
+
+#### WINDOWS / LINUX
+```bash
+python3 --version
+```
+
+##### Instalação do Flask
+Na sequência, instale o framework Flask para criar rapidamente um servidor web. 
+```bash
+pip install Flask
+```
+
+
+##### Iniciar a instância do servidor web para acessar seu front end
+```bash
+python3 server.py
+```
+
+
+#### MacOS
+```bash
+python3 --version
+```
+
+##### Instalação do Flask
+Na sequência, instale o framework Flask para criar rapidamente um servidor web. 
+```bash
+pip install Flask
+```
+
+
+##### Iniciar a instância do servidor web para acessar seu front end
+```bash
+python3 server.py
+```
+
+
+==========================================================================================
+==========================================================================================
+==========================================================================================
+
+
+
+### 2. Instalação servidor web em node.js
+
 Primeiro, certifique-se de ter o Node.js instalado. Você pode baixá-lo e instalá-lo a partir do site oficial do Node.js no link a seguir : 
 https://nodejs.org/pt
 
