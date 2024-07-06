@@ -13,7 +13,7 @@ Acesse aqui o github com a API e backend da aplicação : https://github.com/mor
 
 
 
-### 1. Instalação do Front-end: clone o repositório
+## 1. Instalação do Front-end: clone o repositório
 
 ```bash
 git clone https://github.com/morettonijose/timerActivities-frontEnd.git seu-repositorio-front
@@ -22,7 +22,7 @@ cd seu-repositorio-front
 
 
 
-### 2. Instalação servidor web  python + FLASK
+## 2. Instalação servidor web em Python + FLASK
 
 Primeiro, certifique-se de ter  python instalado. 
 
@@ -72,7 +72,7 @@ python3 --version
 
 
 
-### 2. Instalação servidor web em node.js + Express.js
+## 2. Instalação servidor web em node.js + Express.js
 
 Se preferir a alternativa de configurar seu front-end em node.js siga os procedimentos abaixo  : 
 
