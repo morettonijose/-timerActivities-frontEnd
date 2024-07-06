@@ -27,104 +27,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-    // Função para renderizar a lista de itens
-    function renderItems() {
-        itemList.innerHTML = '';
-        const filterValue = categoryFilter.value;
 
-        items.forEach(item => {
-            if (filterValue === 'Todos' || item.category === filterValue) {
-                const li = document.createElement('li');
-
-                switch (item.category) {
-                    case "Prioridade Alta":
-                        li.setAttribute('class', "prioridade-alta");
-                        break;
-                    case "Prioridade Media":
-                        li.setAttribute('class', "prioridade-media");
-                        break;
-                    case "Prioridade Baixa":
-                        li.setAttribute('class', "prioridade-baixa");
-                        break;
-                    default:
-                        break;
-                }
-
-                li.dataset.id = item.id;
-                li.innerHTML = `
-                    <span>${item.name}</span>: ${item.description} 
-                    <div class="btn-container">
-                        <span class="timer">${formatTimer(item.id)}</span>
-                        <button class="start-stop-btn" data-status="stopped">Iniciar</button>
-                        <button class="edit-btn">Editar</button>
-                        <button class="delete-btn">Excluir</button>
-                    </div>
-                `;
-                itemList.appendChild(li);
-            }
-        }); 
-        // Adiciona eventos de edição, exclusão e controle de cronômetro aos respectivos botões
-        addEventListenersToButtons();
-    }
-
-
-
-
-
-
-
-
-
-    // Função para adicionar eventos de clique aos botões de edição, exclusão e controle de cronômetro
-    function addEventListenersToButtons() {
-        const editButtons = document.querySelectorAll('.edit-btn');
-        const deleteButtons = document.querySelectorAll('.delete-btn');
-        const startStopButtons = document.querySelectorAll('.start-stop-btn');
-
-        editButtons.forEach(button => {
-            button.addEventListener('click', function(event) {
-                const listItem = button.closest('li');
-                const id = listItem.dataset.id;
-                const itemToEdit = items.find(item => item.id === parseInt(id));
-                if (itemToEdit) {
-                    openEditModal(itemToEdit.id, itemToEdit.name, itemToEdit.description, itemToEdit.category);
-                }
-            });
-        });
-
-        deleteButtons.forEach(button => {
-            button.addEventListener('click', function(event) {
-                const listItem = button.closest('li');
-                const id = listItem.dataset.id;
-                deleteItem(id);
-            });
-        });
-
-        startStopButtons.forEach(button => {
-            button.addEventListener('click', function(event) {
-                const listItem = button.closest('li');
-                const id = listItem.dataset.id;
-                if (button.dataset.status === 'stopped') {
-                    startTimer(id, button);
-                } else {
-                    stopTimer(id, button);
-                }
-            });
-        });
-    }
-
-
-
-
-
-
-    
-
-
-
-
-
-
+ 
     
 
     // Função para limpar campos do formulário de adição
@@ -170,6 +74,95 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Erro:', error);
         }
     });
+
+
+
+
+
+
+
+
+
+
+    // Função para renderizar a lista de itens
+    function renderItems() {
+        itemList.innerHTML = '';
+        const filterValue = categoryFilter.value;
+
+        items.forEach(item => {
+            if (filterValue === 'Todos' || item.category === filterValue) {
+                const li = document.createElement('li');
+
+                switch (item.category) {
+                    case "Prioridade Alta":
+                        li.setAttribute('class', "prioridade-alta");
+                        break;
+                    case "Prioridade Media":
+                        li.setAttribute('class', "prioridade-media");
+                        break;
+                    case "Prioridade Baixa":
+                        li.setAttribute('class', "prioridade-baixa");
+                        break;
+                    default:
+                        break;
+                }
+
+                li.dataset.id = item.id;
+                li.innerHTML = `
+                    <span>${item.name}</span>: ${item.description} 
+                    <div class="btn-container">
+                        <span class="timer">${formatTimer(item.id)}</span>
+                        <button class="start-stop-btn" data-status="stopped">Iniciar</button>
+                        <button class="edit-btn">Editar</button>
+                        <button class="delete-btn">Excluir</button>
+                    </div>
+                `;
+                itemList.appendChild(li);
+            }
+        }); 
+        // Adiciona eventos de edição, exclusão e controle de cronômetro aos respectivos botões
+        addEventListenersToButtons();
+    }
+
+
+ 
+    // Função para adicionar eventos de clique aos botões de edição, exclusão e controle de cronômetro
+    function addEventListenersToButtons() {
+        const editButtons = document.querySelectorAll('.edit-btn');
+        const deleteButtons = document.querySelectorAll('.delete-btn');
+        const startStopButtons = document.querySelectorAll('.start-stop-btn');
+
+        editButtons.forEach(button => {
+            button.addEventListener('click', function(event) {
+                const listItem = button.closest('li');
+                const id = listItem.dataset.id;
+                const itemToEdit = items.find(item => item.id === parseInt(id));
+                if (itemToEdit) {
+                    openEditModal(itemToEdit.id, itemToEdit.name, itemToEdit.description, itemToEdit.category);
+                }
+            });
+        });
+
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', function(event) {
+                const listItem = button.closest('li');
+                const id = listItem.dataset.id;
+                deleteItem(id);
+            });
+        });
+
+        startStopButtons.forEach(button => {
+            button.addEventListener('click', function(event) {
+                const listItem = button.closest('li');
+                const id = listItem.dataset.id;
+                if (button.dataset.status === 'stopped') {
+                    startTimer(id, button);
+                } else {
+                    stopTimer(id, button);
+                }
+            });
+        });
+    }
 
 
 
@@ -269,7 +262,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 
-
  
 
     // Adiciona eventos de clique nos botões de fechar modal
@@ -295,10 +287,7 @@ document.addEventListener('DOMContentLoaded', function() {
         renderItems();
     });
 
-
-
-
-
+ 
 
 
     // Carregar itens da lista inicialmente
@@ -328,12 +317,11 @@ document.addEventListener('DOMContentLoaded', function() {
         } catch (error) {
             console.error('Erro:', error);
         }
-    }
-
-
-
-
+    } 
     loadItems();  // Carregar itens ao iniciar a aplicação
+
+
+
 
 
 
@@ -341,7 +329,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
 
 
-    ///////////// FUNÇÕES DO MVP ////////////////////////////////////
+    ///////////// FUNÇÕES DO CRONOMETRO ////////////////////////////////////
 
     // Função para iniciar o cronômetro
     function startTimer(id, button) {
