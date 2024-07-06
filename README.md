@@ -13,7 +13,7 @@ Acesse aqui o github com a API e backend da aplicação : https://github.com/mor
 
 
 
-### 1. Instalação do Front-end Clone o repositório
+### 1. Instalação do Front-end: clone o repositório
 
 ```bash
 git clone https://github.com/morettonijose/timerActivities-frontEnd.git seu-repositorio-front
