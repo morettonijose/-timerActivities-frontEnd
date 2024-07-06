@@ -1,4 +1,4 @@
-1# timerActivities-frontEnd
+# timerActivities-frontEnd
 
 FRONT-END  para gerenciar e cronometrar tarefas acessando API PYTHON, FLASK , SQLITE e SWAGGER .
 
