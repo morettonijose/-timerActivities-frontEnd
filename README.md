@@ -13,15 +13,74 @@ Acesse aqui o github com a API e backend da aplicação : https://github.com/mor
 
 
 
-### 1. Instalação do Front-end Clone o repositório
+## 1. Instalação do Front-end: clone o repositório
 
 ```bash
 git clone https://github.com/morettonijose/timerActivities-frontEnd.git seu-repositorio-front
 cd seu-repositorio-front
 ```
 
-### 2. Instalação do node 
-Primeiro, certifique-se de ter o Node.js instalado. Você pode baixá-lo e instalá-lo a partir do site oficial do Node.js no link a seguir : 
+Agora basta escolher a stack para rodar seu servidor WEB de front-end. 
+
+Disponibilizei 2 opções pre-configuradas que você pode usar facilmente.
+
+Você pode escolher entre **PYTHON + Flask** ou  **NODE.JS + Express.js**.
+
+Escolha de acordo com sua preferência e siga  para o próximo passo com a stack escolhida  : 
+
+## 2. Instalação servidor web em Python + FLASK
+
+Primeiro, certifique-se de ter  python instalado. 
+
+#### WINDOWS / LINUX
+```bash
+python --version
+```
+
+#### MACOS
+```bash
+python3 --version
+```
+
+### 2.1. Instalação do Flask
+Uma vez que o python está instalado, adicione a biblioteca Flask para criar rapidamente um servidor web. 
+
+#### WINDOWS / LINUX
+```bash
+pip install Flask
+```
+#### MACOS
+```bash
+pip3 install Flask
+```
+
+
+### 2.2. Iniciar a instância do servidor web para acessar seu front end
+
+#### WINDOWS / LINUX
+```bash
+python server.py
+```
+
+#### MACOS
+```bash
+python3 --version
+``` 
+ 
+## 3. Pronto! 
+Você já pode acessar o front-end no navegador web. Acesse o link a seguir : 
+
+**http://127.0.0.1:8100/**
+
+
+
+
+## 2. Instalação servidor web em node.js + Express.js
+
+Se preferir a alternativa de configurar seu front-end em node.js siga os procedimentos abaixo  : 
+
+Primeiro, certifique-se de ter o Node.js instalado. Você pode baixá-lo e instalá-lo a partir do site oficial do Node.js no link a seguir :
+
 https://nodejs.org/pt
 
 Uma vez que o node está instalado, realize o seguinte procedimento : 
@@ -29,20 +88,21 @@ Uma vez que o node está instalado, realize o seguinte procedimento :
 npm init -y
 ```
 
-### 3. Instalação do Express.js 
+### 2.1 Instalação do Express.js 
 Na sequência, instale o framework Express.js para criar rapidamente um servidor web. 
 ```bash
 npm install express
 ```
 
 
-### 4. Iniciar a instância do servidor web para acessar seu front end
+### 2.2. Iniciar a instância do servidor web para acessar seu front end
 ```bash
 node server.js
 ```
 
 
-### 5. Pronto! Você já pode acessar o front-end no navegador web. Acesse o link a seguir : 
+## 3. Pronto! 
+Você já pode acessar o front-end no navegador web. Acesse o link a seguir : 
 
 **http://localhost:8100**
 
