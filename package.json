@@ -1,7 +1,7 @@
 {
   "name": "timeractivities-frontend",
   "version": "1.0.0",
-  "description": "FRONT-END  para gerenciar e cronometrar tarefas acessando API PYTHON, FLASK , SQLITE e SWAGGER .",
+  "description": "FRONT-END  para gerenciar e cronometrar tarefas acessando API PYTHON, FLASK , SQLITE e SWAGGER.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
