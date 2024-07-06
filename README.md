@@ -22,7 +22,8 @@ cd seu-repositorio-front
 
 
 
-### 2. Instalação servidor web em python
+### 2. Instalação servidor web  python + FLASK
+
 Primeiro, certifique-se de ter  python instalado. 
 
 #### WINDOWS / LINUX
@@ -35,8 +36,9 @@ python --version
 python3 --version
 ```
 
-### Instalação do Flask
-Na sequência, instale o framework Flask para criar rapidamente um servidor web. 
+### 3. Instalação do Flask
+Uma vez que o python está instalado, adicione a biblioteca Flask para criar rapidamente um servidor web. 
+
 #### WINDOWS / LINUX
 ```bash
 pip install Flask
@@ -48,7 +50,7 @@ pip3 install Flask
 ```
 
 
-### Iniciar a instância do servidor web para acessar seu front end
+### 4. Iniciar a instância do servidor web para acessar seu front end
 
 #### Windows/linuz
 ```bash
@@ -60,6 +62,9 @@ python server.py
 python3 --version
 ``` 
  
+### 5. Pronto! Você já pode acessar o front-end no navegador web. Acesse o link a seguir : 
+
+**http://127.0.0.1:8100/**
 
 
 ==========================================================================================
