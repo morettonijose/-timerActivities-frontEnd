@@ -76,6 +76,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
   
+
+
+
     /////////////CARREGA ATIVIDADES  ////////////////////////////////////////////////////////   
     async function loadItems() {
             try {
@@ -104,7 +107,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-
     /////////////RENDERIZA A LISTA DE ATIVIDADES  /////////////////////////////////////////
     //  
     // Função para renderizar a lista de itens
@@ -112,23 +114,13 @@ document.addEventListener('DOMContentLoaded', function() {
             itemList.innerHTML = '';
             const filterValue = categoryFilter.value;
 
-            items.forEach(item => {
+            items.forEach( item => {
                 if (filterValue === 'Todos' || item.category === filterValue) {
                     const li = document.createElement('li');
+                  
+                    let cat =  getCategoryClass(item.category);
 
-                    switch (item.category) {
-                        case "Prioridade Alta":
-                            li.setAttribute('class', "prioridade-alta");
-                            break;
-                        case "Prioridade Media":
-                            li.setAttribute('class', "prioridade-media");
-                            break;
-                        case "Prioridade Baixa":
-                            li.setAttribute('class', "prioridade-baixa");
-                            break;
-                        default:
-                            break;
-                    }
+                    li.setAttribute('class',  cat );
 
                     li.dataset.id = item.id;
                     li.innerHTML = `
@@ -190,11 +182,32 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
                 });
     }
+
+    function getCategoryClass(category){
+                let category_class = '';
+                switch (category) {
+                    case "Prioridade Alta":
+                        category_class =   'prioridade-alta';
+                        break;
+                    case "Prioridade Media":
+                        category_class =   'prioridade-media';
+                        break;
+                    case "Prioridade Baixa":
+                        category_class =   'prioridade-baixa';
+                        break;
+                    default:
+                        break;
+                }
+                return category_class; 
+    }
     ///////////////////////////////////////////////////////////////////////////////////////
 
 
 
 
+
+
+    
 
     
     /////////////FORMULARIO ADICIONAR///////////////////////////////////////////////////////// 

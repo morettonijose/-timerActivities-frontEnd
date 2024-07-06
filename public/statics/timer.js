@@ -6,11 +6,7 @@ import {
 
  
 
-///////////// FUNÇÕES DO CRONOMETRO //////////////////////////////////// 
-    // Função para formatar o cronômetro
-
-
-
+   // Função para formatar o cronômetro 
     function formatTimer(id, timers) {
         if (timers[id]) {
             return `${String(timers[id].hours).padStart(2, '0')}:${String(timers[id].minutes).padStart(2, '0')}:${String(timers[id].seconds).padStart(2, '0')}`;
@@ -21,15 +17,11 @@ import {
 
 
 
-
-
-
     // Função para iniciar o cronômetro
     function startTimer(id, button , timers,  timerIntervals , items  ) {
         const listItem = button.closest('li');
         const timerElement = listItem.querySelector('.timer');
-        let [hours, minutes, seconds] = timerElement.textContent.split(':').map(Number);
-
+        let [hours, minutes, seconds] = timerElement.textContent.split(':').map(Number); 
         // Pausa todos os outros cronômetros
         Object.keys(timerIntervals).forEach(key => {
             if (key !== id && timerIntervals[key]) {
@@ -39,15 +31,12 @@ import {
                 otherButton.innerText = 'Iniciar';
                 otherButton.dataset.status = 'stopped';
             }
-        });
-
+        }); 
         if (!timers[id]) {
             timers[id] = { hours, minutes, seconds };
-        }
-
+        } 
         button.innerText = 'Pausar';
-        button.dataset.status = 'running';
-
+        button.dataset.status = 'running'; 
         if (!timerIntervals[id]) {
             timerIntervals[id] = setInterval(() => {
                 timers[id].seconds++;
@@ -64,7 +53,6 @@ import {
                     `${String(timers[id].hours).padStart(2, '0')}:${String(timers[id].minutes).padStart(2, '0')}:${String(timers[id].seconds).padStart(2, '0')}`;
             }, 1000);
         }
-
         // Incrementa o totalStart e atualiza no servidor
         const item = items.find(item => item.id === parseInt(id));
         item.totalStart++;
@@ -81,11 +69,9 @@ import {
     // Função para pausar o cronômetro
     function stopTimer(id, button , timers,  timerIntervals , items ) {
         clearInterval(timerIntervals[id]);
-        timerIntervals[id] = null;
-
+        timerIntervals[id] = null; 
         button.innerText = 'Iniciar';
-        button.dataset.status = 'stopped';
-
+        button.dataset.status = 'stopped'; 
         // Salva o tempo total no servidor
         const item = items.find(item => item.id === parseInt(id));
         const totalTimeInSeconds = timers[id].hours * 3600 + timers[id].minutes * 60 + timers[id].seconds;

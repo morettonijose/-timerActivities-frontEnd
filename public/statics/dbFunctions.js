@@ -19,6 +19,8 @@ async function addItemToDatabase(name, description, category) {
     return await response.json();
 }
 
+
+
 async function updateItemInDatabase(id, name, description, category) {
     const response = await fetch(`http://127.0.0.1:5000/activity/${id}`, {
         method: 'PUT',
@@ -39,6 +41,9 @@ async function updateItemInDatabase(id, name, description, category) {
     return await response.json();
 }
 
+
+
+
 async function fetchItemsFromDatabase() {
     try {
         const response = await fetch('http://127.0.0.1:5000/activities');
@@ -51,6 +56,8 @@ async function fetchItemsFromDatabase() {
         throw error; // Propaga o erro para ser tratado externamente, se necessário
     }
 }
+
+
 
 async function deleteItem(id) {
     try {
@@ -68,6 +75,8 @@ async function deleteItem(id) {
         return error
     }
 }
+
+
 
 async function updateTotalStart(id, totalStart) {
     try {
@@ -87,6 +96,8 @@ async function updateTotalStart(id, totalStart) {
         console.error('Erro:', error);
     }
 }
+
+
 
 async function updateTotalTime(id, totalTime) {
     try {
@@ -109,6 +120,9 @@ async function updateTotalTime(id, totalTime) {
         console.error('Erro:', error);
     }
 }
+
+
+
 
 export {
     addItemToDatabase,
