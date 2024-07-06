@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', function() {
 
 
@@ -26,19 +27,17 @@ document.addEventListener('DOMContentLoaded', function() {
     let timerIntervals = {}; // Object to store intervals for each timer
 
 
-
-
  
-    
 
-    // Função para limpar campos do formulário de adição
+  
+  /////////////FORMULARIO ADICIONAR////////////////////////////// 
+  // Função para limpar campos do formulário de adição
     function clearAddForm() {
         document.getElementById('name').value = '';
         document.getElementById('description').value = '';
         document.getElementById('category').value = 'Todos';  // Reinicia o filtro para "Todos"
-    }
-
-    // Função para adicionar um novo item
+    } 
+    // Função para adicionar um novo item 
     addItemForm.addEventListener('submit', async function(event) {
         event.preventDefault();
         const name = document.getElementById('name').value;
@@ -46,30 +45,57 @@ document.addEventListener('DOMContentLoaded', function() {
         const category = document.getElementById('category').value; // Captura a categoria selecionada
     
         try {
-            const response = await fetch('http://127.0.0.1:5000/activity/new', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    name,
-                    description,
-                    status: 'Inativo',  // Status padrão
-                    category,          // Categoria selecionada
-                    totalTime: '0',    // TotalTime inicial
-                    totalStart: 0      // TotalStart inicial
-                }),
-            });
-    
-            if (!response.ok) {
-                throw new Error('Erro ao adicionar item');
-            }
-    
-            const newItem = await response.json();
+            const newItem = await addItemToDatabase(name, description, category);
             items.push(newItem.activity);
             renderItems();
             clearAddForm();
             createModal.style.display = 'none'; // Fecha o modal de adição após adicionar
+        } catch (error) {
+            console.error('Erro:', error);
+        }
+
+    });
+      
+
+
+
+    /////////////FORMULARIO EDITAR//////////////////////////////  
+    // Função para preencher o formulário de edição com os dados do item selecionado
+    function openEditModal(id, name, description, category) {
+        editIdInput.value = id;
+        editNameInput.value = name;
+        editDescriptionInput.value = description;
+
+        // Preencher o campo de categoria (select) com a categoria atual
+        const categorySelect = document.getElementById('edit-category');
+        categorySelect.value = category; // Define o valor da categoria
+
+        // Verifica qual opção do select está selecionada
+        for (let option of categorySelect.options) {
+            if (option.value === category) {
+                option.selected = true; // Marca a opção como selecionada
+            } else {
+                option.selected = false; // Desmarca outras opções
+            }
+        }
+
+        editModal.style.display = 'block';
+    }   
+    // Evento para salvar edição  
+    saveEditButton.addEventListener('click', async function() {
+        const id = editIdInput.value;
+        const name = editNameInput.value;
+        const description = editDescriptionInput.value;
+        const category = editCategoryInput.value; // Capturar a categoria selecionada
+    
+        try {
+            const updatedItem = await updateItemInDatabase(id, name, description, category);
+            const index = items.findIndex(item => item.id === parseInt(id));
+            if (index !== -1) {
+                items[index] = updatedItem.activity;
+                renderItems();
+                editModal.style.display = 'none'; // Fechar o modal de edição após editar
+            }
         } catch (error) {
             console.error('Erro:', error);
         }
@@ -79,11 +105,69 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
+    /////////////EVENTOS DE BOTOES  E SELECT DA  INTERFACE //////////////////////////////  
+    // Adiciona eventos de clique nos botões de fechar modal
+    closeModalButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            editModal.style.display = 'none';
+            createModal.style.display = 'none';
+        });
+    });  
+    // Evento para abrir modal de adição ao clicar em "Adicionar"
+    createButton.addEventListener('click', function() {
+        createModal.style.display = 'block';
+    });
+
+    // Evento para cancelar adição
+    cancelCreateButton.addEventListener('click', function() {
+        createModal.style.display = 'none';
+    });
+
+    // Evento para filtrar itens por categoria ao alterar o select
+    categoryFilter.addEventListener('change', function() {
+        renderItems();
+    });
+
+ 
+ 
 
 
 
 
 
+
+
+
+    /////////////CARREGA ATIVIDADES  ////////////////////////////// 
+    loadItems(); // Carregar itens ao iniciar a aplicação 
+    async function loadItems() {
+        try {
+            const data = await fetchItemsFromDatabase();
+            items = data;
+    
+            // Iniciar o cronômetro com base no totalTime para cada item
+            items.forEach(item => {
+                if (item.totalTime > 0) {
+                    const totalTimeInSeconds = item.totalTime;
+                    const hours = Math.floor(totalTimeInSeconds / 3600);
+                    const minutes = Math.floor((totalTimeInSeconds % 3600) / 60);
+                    const seconds = totalTimeInSeconds % 60;
+                    timers[item.id] = { hours, minutes, seconds };
+                } else {
+                    timers[item.id] = { hours: 0, minutes: 0, seconds: 0 };
+                }
+            });
+            renderItems(); // Renderizar itens após carregar
+        } catch (error) {
+            console.error('Erro ao carregar itens:', error);
+        }
+    }
+
+
+
+
+
+    // RENDERIZA A LISTA DE ATIVIDADES  
     // Função para renderizar a lista de itens
     function renderItems() {
         itemList.innerHTML = '';
@@ -122,11 +206,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }); 
         // Adiciona eventos de edição, exclusão e controle de cronômetro aos respectivos botões
         addEventListenersToButtons();
-    }
-
-
- 
-    // Função para adicionar eventos de clique aos botões de edição, exclusão e controle de cronômetro
+    } 
+    // Função para adicionar eventos de clique aos botões de edição, exclusão e controle de cronômetro aos itens renderizados via javascript
     function addEventListenersToButtons() {
         const editButtons = document.querySelectorAll('.edit-btn');
         const deleteButtons = document.querySelectorAll('.delete-btn');
@@ -144,10 +225,17 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         deleteButtons.forEach(button => {
-            button.addEventListener('click', function(event) {
+            button.addEventListener('click', async event => {
                 const listItem = button.closest('li');
-                const id = listItem.dataset.id;
-                deleteItem(id);
+                const id = listItem.dataset.id; 
+                try {
+                    let response = await deleteItem(id);
+                    items = items.filter(item => item.id !== parseInt(id)); 
+                    renderItems();
+                } catch (error) {
+                    console.error('Erro:', error);
+                }
+                
             });
         });
 
@@ -167,169 +255,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-
-
-
-
-
-
-
-
-
-    // Função para preencher o formulário de edição com os dados do item selecionado
-    function openEditModal(id, name, description, category) {
-        editIdInput.value = id;
-        editNameInput.value = name;
-        editDescriptionInput.value = description;
-
-        // Preencher o campo de categoria (select) com a categoria atual
-        const categorySelect = document.getElementById('edit-category');
-        categorySelect.value = category; // Define o valor da categoria
-
-        // Verifica qual opção do select está selecionada
-        for (let option of categorySelect.options) {
-            if (option.value === category) {
-                option.selected = true; // Marca a opção como selecionada
-            } else {
-                option.selected = false; // Desmarca outras opções
-            }
-        }
-
-        editModal.style.display = 'block';
-    }  
-    // Evento para salvar edição
-    saveEditButton.addEventListener('click', async function() {
-        const id = editIdInput.value;
-        const name = editNameInput.value;
-        const description = editDescriptionInput.value;
-        const category = editCategoryInput.value; // Capturar a categoria selecionada
-
-        try {
-            const response = await fetch(`http://127.0.0.1:5000/activity/${id}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    name,
-                    description,
-                    category, // Incluir a categoria na atualização
-                }),
-            });
-
-            if (!response.ok) {
-                throw new Error('Erro ao editar item');
-            }
-
-            const updatedItem = await response.json();
-            const index = items.findIndex(item => item.id === parseInt(id));
-            if (index !== -1) {
-                items[index] = updatedItem.activity;
-                renderItems();
-                editModal.style.display = 'none'; // Fechar o modal de edição após editar
-            }
-        } catch (error) {
-            console.error('Erro:', error);
-        }
-    });  
-    // Evento para cancelar edição
-    cancelEditButton.addEventListener('click', function() {
-        editModal.style.display = 'none';
-    });
-
-
-
  
-
-
-
-    // Função para deletar um item
-    async function deleteItem(id) {
-        try {
-            const response = await fetch(`http://127.0.0.1:5000/activity/del/${id}`, {
-                method: 'DELETE',
-            });
-
-            if (!response.ok) {
-                throw new Error('Erro ao deletar item');
-            }
-
-            items = items.filter(item => item.id !== parseInt(id));
-            renderItems();
-        } catch (error) {
-            console.error('Erro:', error);
-        }
-    }
-
-
- 
-
-    // Adiciona eventos de clique nos botões de fechar modal
-    closeModalButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            editModal.style.display = 'none';
-            createModal.style.display = 'none';
-        });
-    }); 
-
-    // Evento para abrir modal de adição ao clicar em "Adicionar"
-    createButton.addEventListener('click', function() {
-        createModal.style.display = 'block';
-    });
-
-    // Evento para cancelar adição
-    cancelCreateButton.addEventListener('click', function() {
-        createModal.style.display = 'none';
-    });
-
-    // Evento para filtrar itens por categoria ao alterar o select
-    categoryFilter.addEventListener('change', function() {
-        renderItems();
-    });
-
- 
-
-
-    // Carregar itens da lista inicialmente
-    async function loadItems() {
-        try {
-            const response = await fetch('http://127.0.0.1:5000/activities');
-            if (!response.ok) {
-                throw new Error('Erro ao carregar itens');
-            }
-            const data = await response.json();
-            items = data;
-
-            // Iniciar o cronômetro com base no totalTime para cada item
-            items.forEach(item => {
-                if (item.totalTime > 0) {
-                    const totalTimeInSeconds = item.totalTime;
-                    const hours = Math.floor(totalTimeInSeconds / 3600);
-                    const minutes = Math.floor((totalTimeInSeconds % 3600) / 60);
-                    const seconds = totalTimeInSeconds % 60;
-                    timers[item.id] = { hours, minutes, seconds };
-                } else {
-                    timers[item.id] = { hours: 0, minutes: 0, seconds: 0 };
-                }
-            });
-
-            renderItems(); // Renderizar itens após carregar
-        } catch (error) {
-            console.error('Erro:', error);
-        }
-    } 
-    loadItems();  // Carregar itens ao iniciar a aplicação
-
-
-
-
-
-
-
   
 
 
-    ///////////// FUNÇÕES DO CRONOMETRO ////////////////////////////////////
+    ///////////// FUNÇÕES DO CRONOMETRO //////////////////////////////////// 
+    // Função para formatar o cronômetro
+      function formatTimer(id) {
+        if (timers[id]) {
+            return `${String(timers[id].hours).padStart(2, '0')}:${String(timers[id].minutes).padStart(2, '0')}:${String(timers[id].seconds).padStart(2, '0')}`;
+        } else {
+            return '00:00:00';
+        }
+    } 
 
     // Função para iniciar o cronômetro
     function startTimer(id, button) {
@@ -376,7 +314,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const item = items.find(item => item.id === parseInt(id));
         item.totalStart++;
         updateTotalStart(id, item.totalStart);
-    }
+    } 
     // Função para pausar o cronômetro
     function stopTimer(id, button) {
         clearInterval(timerIntervals[id]);
@@ -391,6 +329,96 @@ document.addEventListener('DOMContentLoaded', function() {
         item.totalTime = totalTimeInSeconds;
         updateTotalTime(id, totalTimeInSeconds);
     }
+
+
+
+
+
+
+
+
+  //////////////FUNCOES DE CONEXAO COM O BANCO DE DADOS //////////////////////////// 
+
+    async function addItemToDatabase(name, description, category) {
+        const response = await fetch('http://127.0.0.1:5000/activity/new', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                name,
+                description,
+                status: 'Inativo',  // Status padrão
+                category,          // Categoria selecionada
+                totalTime: '0',    // TotalTime inicial
+                totalStart: 0      // TotalStart inicial
+            }),
+        }); 
+        if (!response.ok) {
+            throw new Error('Erro ao adicionar item');
+        } 
+        return await response.json();
+    }
+
+
+  
+    async function updateItemInDatabase(id, name, description, category) {
+        const response = await fetch(`http://127.0.0.1:5000/activity/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                name,
+                description,
+                category, // Incluir a categoria na atualização
+            }),
+        });
+    
+        if (!response.ok) {
+            throw new Error('Erro ao editar item');
+        }
+    
+        return await response.json();
+    }
+
+
+
+    async function fetchItemsFromDatabase() {
+        try {
+            const response = await fetch('http://127.0.0.1:5000/activities');
+            if (!response.ok) {
+                throw new Error('Erro ao carregar itens');
+            }
+            return await response.json();
+        } catch (error) {
+            console.error('Erro:', error);
+            throw error; // Propaga o erro para ser tratado externamente, se necessário
+        }
+    }
+    
+
+    
+    // Função para deletar um item
+    async function deleteItem(id) {
+            try {
+                const response = await fetch(`http://127.0.0.1:5000/activity/del/${id}`, {
+                    method: 'DELETE',
+                });
+    
+                if (!response.ok) {
+                    throw new Error('Erro ao deletar item');
+                }
+    
+                return response;
+            } catch (error) {
+                console.error('Erro:', error);
+                return error
+            }
+   }
+
+     
+
     // Função para atualizar o totalStart no servidor
     async function updateTotalStart(id, totalStart) {
         try {
@@ -410,6 +438,9 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Erro:', error);
         }
     }
+    
+
+
     // Função para atualizar o totalTime no servidor
     async function updateTotalTime(id, totalTime) {
         try {
@@ -432,19 +463,6 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Erro:', error);
         }
     }
-    // Função para formatar o cronômetro
-    function formatTimer(id) {
-        if (timers[id]) {
-            return `${String(timers[id].hours).padStart(2, '0')}:${String(timers[id].minutes).padStart(2, '0')}:${String(timers[id].seconds).padStart(2, '0')}`;
-        } else {
-            return '00:00:00';
-        }
-    }
-
-
-
  
-
-
 
 });
