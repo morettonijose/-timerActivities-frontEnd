@@ -36,7 +36,7 @@ npm install express
 ```
 
 
-### 4. Quase tudo pronto! Agora é só iniciar a instância do servidor web de seu front end
+### 4. Iniciar a instância do servidor web para acessar seu front end
 ```bash
 node server.js
 ```
