@@ -27,38 +27,39 @@ Primeiro, certifique-se de ter  python instalado.
 
 #### WINDOWS / LINUX
 ```bash
-python3 --version
+python --version
 ```
 
-##### Instalação do Flask
-Na sequência, instale o framework Flask para criar rapidamente um servidor web. 
-```bash
-pip install Flask
-```
-
-
-##### Iniciar a instância do servidor web para acessar seu front end
-```bash
-python3 server.py
-```
-
-
-#### MacOS
+#### MACOS
 ```bash
 python3 --version
 ```
 
-##### Instalação do Flask
+### Instalação do Flask
 Na sequência, instale o framework Flask para criar rapidamente um servidor web. 
+#### WINDOWS / LINUX
 ```bash
 pip install Flask
 ```
-
-
-##### Iniciar a instância do servidor web para acessar seu front end
+#### MACOS
+Na sequência, instale o framework Flask para criar rapidamente um servidor web. 
 ```bash
-python3 server.py
+pip3 install Flask
 ```
+
+
+### Iniciar a instância do servidor web para acessar seu front end
+
+#### Windows/linuz
+```bash
+python server.py
+```
+
+#### MACOS
+```bash
+python3 --version
+``` 
+ 
 
 
 ==========================================================================================
