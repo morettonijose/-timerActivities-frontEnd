@@ -175,7 +175,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         const listItem = button.closest('li');
                         const id = listItem.dataset.id;
                         if (button.dataset.status === 'stopped') {
-                            startTimer(id, button , timers, timerIntervals , items );
+                            startTimer(id, button , timers, timerIntervals , items , itemList );
                         } else {
                             stopTimer(id, button ,  timers,  timerIntervals , items );
                         }

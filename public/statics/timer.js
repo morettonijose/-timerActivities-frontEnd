@@ -18,7 +18,7 @@ import {
 
 
     // Função para iniciar o cronômetro
-    function startTimer(id, button , timers,  timerIntervals , items  ) {
+    function startTimer(id, button , timers,  timerIntervals , items , itemList  ) {
         const listItem = button.closest('li');
         const timerElement = listItem.querySelector('.timer');
         let [hours, minutes, seconds] = timerElement.textContent.split(':').map(Number); 
